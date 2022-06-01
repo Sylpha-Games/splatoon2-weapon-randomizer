@@ -15,7 +15,9 @@ test:
   database: splatoon2-weapon-randomizer_test
 
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: splatoon2-weapon-randomizer_production
   username: splatoon2-weapon-randomizer
   password: <%= ENV['SPLATOON2-WEAPON-RANDOMIZER_DATABASE_PASSWORD'] %>
