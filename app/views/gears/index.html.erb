@@ -1,0 +1,52 @@
+<div class="text-center mb-5">
+  <h1>ギア一覧</h1>
+  <p class="mt-5"><%= link_to 'ギア新規登録', new_gear_path, class: 'btn btn-lg btn-primary' %></p>
+  <h2 class="mt-5">アタマ</h2>
+  <div class="row mt-5">
+    <% @headgear.each do |headgear| %>
+      <div class="col-lg-6 border pt-5 pb-3">
+        <p>
+          <%= link_to headgear.name, edit_gear_path(headgear), class: 'font-weight-bold h5' %>
+        </p>
+        <p>
+          <img class="rounded" src=<%= "/gear_powers/#{headgear.main_gear_power.image}" %> alt="Main Gear Power" width="80px" height="80px">
+          <img class="rounded" src=<%= "/gear_powers/#{headgear.sub_gear_power_1.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+          <img class="rounded" src=<%= "/gear_powers/#{headgear.sub_gear_power_2.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+          <img class="rounded" src=<%= "/gear_powers/#{headgear.sub_gear_power_3.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+        </p>
+      </div>
+    <% end %>
+  </div>
+  <h2 class="mt-5">フク</h2>
+  <div class="row mt-5">
+    <% @clothing.each do |clothing| %>
+      <div class="col-lg-6 border pt-5 pb-3">
+        <p>
+          <%= link_to clothing.name, edit_gear_path(clothing), class: 'font-weight-bold h5' %>
+        </p>
+        <p>
+          <img class="rounded" src=<%= "/gear_powers/#{clothing.main_gear_power.image}" %> alt="Main Gear Power" width="80px" height="80px">
+          <img class="rounded" src=<%= "/gear_powers/#{clothing.sub_gear_power_1.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+          <img class="rounded" src=<%= "/gear_powers/#{clothing.sub_gear_power_2.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+          <img class="rounded" src=<%= "/gear_powers/#{clothing.sub_gear_power_3.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+        </p>
+      </div>
+    <% end %>
+  </div>
+  <h2 class="mt-5">クツ</h2>
+  <div class="row mt-5">
+    <% @shoes.each do |shoes| %>
+      <div class="col-lg-6 border pt-5 pb-3">
+        <p>
+          <%= link_to shoes.name, edit_gear_path(shoes), class: 'font-weight-bold h5' %>
+        </p>
+        <p>
+          <img class="rounded" src=<%= "/gear_powers/#{shoes.main_gear_power.image}" %> alt="Main Gear Power" width="80px" height="80px">
+          <img class="rounded" src=<%= "/gear_powers/#{shoes.sub_gear_power_1.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+          <img class="rounded" src=<%= "/gear_powers/#{shoes.sub_gear_power_2.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+          <img class="rounded" src=<%= "/gear_powers/#{shoes.sub_gear_power_3.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

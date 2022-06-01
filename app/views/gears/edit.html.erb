@@ -1,0 +1,38 @@
+<div class="text-center">
+  <h1>ギア編集</h1>
+</div>
+<div class="row mt-5">
+  <div class="offset-sm-3 col-sm-6">
+    <%= form_with(model: @gear, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form-group">
+        <%= f.label :name, 'ギア名' %>
+        <%= f.text_field :name, value: @gear.name, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :category, 'カテゴリ' %>
+        <%= f.select :category, @categories, {value: @gear.category}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :main_gear_power, 'メインスロット' %>
+        <%= f.collection_select :main_gear_power_id, @main_gear_powers, :id, :name, {value: @gear.main_gear_power}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :sub_gear_power_1, 'サブスロット1' %>
+        <%= f.collection_select :sub_gear_power_1_id, @sub_gear_powers, :id, :name, {value: @gear.sub_gear_power_1}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :sub_gear_power_2, 'サブスロット2' %>
+        <%= f.collection_select :sub_gear_power_2_id, @sub_gear_powers, :id, :name, {value: @gear.sub_gear_power_2}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :sub_gear_power_3, 'サブスロット3' %>
+        <%= f.collection_select :sub_gear_power_3_id, @sub_gear_powers, :id, :name, {value: @gear.sub_gear_power_3}, class: 'form-control' %>
+      </div>
+      <%= f.submit '更新する', class: 'btn btn-primary btn-block mt-5' %>
+    <% end %>
+  </div>
+</div>
+<div class="text-center my-5">
+  <p><%= link_to 'ギアを削除する', gear_path(@gear), method: :delete, data: {confirm: "本当に削除しますか？"}, class: 'text-danger' %></p>
+</div>

@@ -1,0 +1,46 @@
+<div class="text-center">
+  <p>
+    <img class="rounded" src=<%= "/main_weapons/#{@main_weapon.image}" %> alt="Main Weapon" width="160px" height="160px">
+  </p>
+  <p>
+    <img class="rounded" src=<%= "/sub_weapons/#{@main_weapon.sub_weapon.image}" %> alt="Sub Weapon" width="80px" height="80px">
+    <img class="rounded" src=<%= "/special_weapons/#{@main_weapon.special_weapon.image}" %> alt="Special Weapon" width="80px" height="80px">
+  </p>
+  <p><%= link_to @main_weapon.name, main_weapon_path(@main_weapon), class: 'font-weight-bold h5' %></p>
+  <p class="font-weight-bold h4 mb-3">Lv.<%= @level %></p>
+  <% if @gear_set %>
+    <p>
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.headgear.main_gear_power.image}" %> alt="Main Gear Power" width="80px" height="80px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.headgear.sub_gear_power_1.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.headgear.sub_gear_power_2.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.headgear.sub_gear_power_3.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+    </p>
+    <p>
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.clothing.main_gear_power.image}" %> alt="Main Gear Power" width="80px" height="80px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.clothing.sub_gear_power_1.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.clothing.sub_gear_power_2.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.clothing.sub_gear_power_3.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+    </p>
+    <p>
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.shoes.main_gear_power.image}" %> alt="Main Gear Power" width="80px" height="80px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.shoes.sub_gear_power_1.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.shoes.sub_gear_power_2.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.shoes.sub_gear_power_3.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+    </p>
+  <% end %>
+</div>
+<div class="row my-5">
+  <div class="offset-xl-4 col-xl-4 offset-md-3 col-md-6">
+    <%= form_with(model: @battle_record, url: "/battle_records/#{@main_weapon.id}", local: true) do |f| %>
+      <div class="form-group">
+        <%= f.label :stage, 'ステージ' %>
+        <%= f.collection_select(:stage_id, @stages, :id, :name, {prompt: "選択してください"}, {class: 'form-control'}) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :point, 'ポイント' %>
+        <%= f.number_field(:point, class: 'form-control') %>
+      </div>
+      <%= f.submit '登録する', class: 'btn btn-primary btn-block mt-5' %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="text-center mb-5">
+  <h1>ブキ一覧</h1>
+  <div class="d-flex justify-content-center mt-5">
+    <%= paginate @main_weapons %>
+  </div>
+  <div class="row mt-5">
+    <% @main_weapons.each do |main_weapon| %>
+      <div class="col-xl-4 col-md-6 border pt-5 pb-3">
+        <p>
+          <img class="rounded" src=<%= "/main_weapons/#{main_weapon.image}" %> alt="Main Weapon" width="160px" height="160px">
+        </p>
+        <p>
+          <img class="rounded" src=<%= "/sub_weapons/#{main_weapon.sub_weapon.image}" %> alt="Sub Weapon" width="80px" height="80px">
+          <img class="rounded" src=<%= "/special_weapons/#{main_weapon.special_weapon.image}" %> alt="Special Weapon" width="80px" height="80px">
+        </p>
+        <p><%= link_to main_weapon.name, main_weapon_path(main_weapon), class: 'font-weight-bold h5' %></p>
+        <% if login? %>
+          <% if BattleRecord.find_by(user_id: session[:user_id], main_weapon_id: main_weapon.id) %>
+            <p class="font-weight-bold h4 mb-3">Lv.<%= Math.sqrt((BattleRecord.where(user_id: session[:user_id], main_weapon_id: main_weapon.id).sum(:point)) / 100).floor %></p>
+          <% else %>
+            <p class="font-weight-bold h4 mb-3">Lv.1</p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-center mt-5">
+    <%= paginate @main_weapons %>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="text-center">
+  <h1>ギアセット編集</h1>
+  <p class="mt-5">
+    <img class="rounded" src=<%= "/main_weapons/#{@gear_set.main_weapon.image}" %> alt="Main Weapon" width="160px" height="160px">
+  </p>
+  <p>
+    <img class="rounded" src=<%= "/sub_weapons/#{@gear_set.main_weapon.sub_weapon.image}" %> alt="Sub Weapon" width="80px" height="80px">
+    <img class="rounded" src=<%= "/special_weapons/#{@gear_set.main_weapon.special_weapon.image}" %> alt="Special Weapon" width="80px" height="80px">
+  </p>
+</div>
+<div class="row mt-5">
+  <div class="offset-sm-3 col-sm-6">
+    <%= form_with(model: @gear_set, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form-group">
+        <%= f.label :headgear, 'アタマ' %>
+        <%= f.collection_select :headgear_id, @headgear, :id, :name, {value: @gear_set.headgear}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :clothing, 'フク' %>
+        <%= f.collection_select :clothing_id, @clothing, :id, :name, {value: @gear_set.clothing}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :shoes, 'クツ' %>
+        <%= f.collection_select :shoes_id, @shoes, :id, :name, {value: @gear_set.shoes}, class: 'form-control' %>
+      </div>
+      <%= f.submit '更新する', class: 'btn btn-primary btn-block mt-5' %>
+    <% end %>
+  </div>
+</div>
+<div class="text-center my-5">
+  <p><%= link_to 'ギアセットを削除する', gear_set_path(@gear_set), method: :delete, data: {confirm: "本当に削除しますか？"}, class: 'text-danger' %></p>
+</div>

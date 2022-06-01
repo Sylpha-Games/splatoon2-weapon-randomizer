@@ -1,0 +1,57 @@
+<div class="text-center mb-5">
+  <p>
+    <img class="rounded" src=<%= "/main_weapons/#{@main_weapon.image}" %> alt="Main Weapon" width="160px" height="160px">
+  </p>
+  <p>
+    <img class="rounded" src=<%= "/sub_weapons/#{@main_weapon.sub_weapon.image}" %> alt="Sub Weapon" width="80px" height="80px">
+    <img class="rounded" src=<%= "/special_weapons/#{@main_weapon.special_weapon.image}" %> alt="Special Weapon" width="80px" height="80px">
+  </p>
+  <h1 class="h5 font-weight-bold"><%= @main_weapon.name %></h1>
+  <% if login? %>
+    <p class="font-weight-bold h4 mb-3">Lv.<%= @level %></p>
+  <% end %>
+  <% if @gear_set %>
+    <p>
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.headgear.main_gear_power.image}" %> alt="Main Gear Power" width="80px" height="80px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.headgear.sub_gear_power_1.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.headgear.sub_gear_power_2.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.headgear.sub_gear_power_3.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+    </p>
+    <p>
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.clothing.main_gear_power.image}" %> alt="Main Gear Power" width="80px" height="80px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.clothing.sub_gear_power_1.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.clothing.sub_gear_power_2.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.clothing.sub_gear_power_3.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+    </p>
+    <p>
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.shoes.main_gear_power.image}" %> alt="Main Gear Power" width="80px" height="80px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.shoes.sub_gear_power_1.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.shoes.sub_gear_power_2.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+      <img class="rounded" src=<%= "/gear_powers/#{@gear_set.shoes.sub_gear_power_3.image}" %> alt="Sub Gear Power" width="40px" height="40px">
+    </p>
+  <% end %>
+  <p class="mt-5"><%= link_to '塗りポイント登録', "/battle_records/new/#{@main_weapon.id}", class: 'btn btn-lg btn-primary' %></p>
+  <div class="row mt-5">
+    <table class="offset-lg-3 col-lg-6 table table-bordered">
+      <tr>
+        <th>ステージ</th>
+        <th>最高</th>
+        <th>合計</th>
+      </tr>
+      <% @stage_id = 1 %>
+      <% while @stage_id <= @stages_count %>
+        <tr>
+          <th><%= Stage.find(@stage_id).name %></th>
+          <% if BattleRecord.find_by(user_id: session[:user_id], main_weapon_id: params[:id], stage_id: @stage_id) %>
+            <th><%= BattleRecord.where(user_id: session[:user_id], main_weapon_id: params[:id], stage_id: @stage_id).maximum(:point) %>p</th>
+            <th><%= BattleRecord.where(user_id: session[:user_id], main_weapon_id: params[:id], stage_id: @stage_id).sum(:point) %>p</th>
+          <% else %>
+            <th>0p</th>
+            <th>0p</th>
+          <% end %>
+        </tr>
+        <% @stage_id += 1 %>
+      <% end %>
+    </table>
+  </div>
+</div>

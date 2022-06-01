@@ -1,0 +1,35 @@
+<div class="text-center">
+  <h1>ギア新規登録</h1>
+</div>
+<div class="row my-5">
+  <div class="offset-sm-3 col-sm-6">
+    <%= form_with(model: @gear, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form-group">
+        <%= f.label :name, 'ギア名' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :category, 'カテゴリ' %>
+        <%= f.select :category, @categories, {prompt: "選択してください"}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :main_gear_power, 'メインスロット' %>
+        <%= f.collection_select :main_gear_power_id, @main_gear_powers, :id, :name, {prompt: "選択してください"}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :sub_gear_power_1, 'サブスロット1' %>
+        <%= f.collection_select :sub_gear_power_1_id, @sub_gear_powers, :id, :name, {prompt: "選択してください"}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :sub_gear_power_2, 'サブスロット2' %>
+        <%= f.collection_select :sub_gear_power_2_id, @sub_gear_powers, :id, :name, {prompt: "選択してください"}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :sub_gear_power_3, 'サブスロット3' %>
+        <%= f.collection_select :sub_gear_power_3_id, @sub_gear_powers, :id, :name, {prompt: "選択してください"}, class: 'form-control' %>
+      </div>
+      <%= f.submit '登録する', class: 'btn btn-primary btn-block mt-5' %>
+    <% end %>
+  </div>
+</div>
