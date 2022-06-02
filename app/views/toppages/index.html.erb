@@ -10,6 +10,9 @@
     <% if login? %>
       <p><%= link_to @main_weapon.name, main_weapon_path(@main_weapon), class: 'font-weight-bold h5' %></p>
       <p class="font-weight-bold h4 mb-3">Lv.<%= @level %></p>
+      <% if @average_point %>
+        <p class="font-weight-bold h4 mb-3">平均：<%= @average_point %>p</p>
+      <% end %>
     <% else %>
       <p class="font-weight-bold h5"><%= @main_weapon.name %></p>
     <% end %>
@@ -38,35 +41,6 @@
   <% if login? %>
     <% if @main_weapon %>
       <p class="mt-5"><%= link_to '塗りポイント登録', "/battle_records/new/#{@main_weapon.id}", class: 'btn btn-lg btn-primary' %></p>
-    <% end %>
-    <% if @max_point != 0 %>
-      <div class="row mt-5">
-        <table class="offset-lg-3 col-lg-6 table table-bordered">
-          <tr>
-            <th>塗りポイント</th>
-            <th>ブキ</th>
-            <th>合計</th>
-          </tr>
-          <tr>
-            <th>MAX</th>
-            <% if BattleRecord.find_by(user_id: session[:user_id], main_weapon_id: @max_point_weapon.id) %>
-              <th><%= @max_point_weapon.name %>（Lv.<%= Math.sqrt((BattleRecord.where(user_id: session[:user_id], main_weapon_id: @max_point_weapon.id).sum(:point)) / 100).floor %>）</th>
-            <% else %>
-              <th><%= @max_point_weapon.name %>（Lv.1）</th>
-            <% end %>
-            <th><%= @max_point %>p</th>
-          </tr>
-          <tr>
-            <th>MIN</th>
-            <% if BattleRecord.find_by(user_id: session[:user_id], main_weapon_id: @min_point_weapon.id) %>
-              <th><%= @min_point_weapon.name %>（Lv.<%= Math.sqrt((BattleRecord.where(user_id: session[:user_id], main_weapon_id: @min_point_weapon.id).sum(:point)) / 100).floor %>）</th>
-            <% else %>
-              <th><%= @min_point_weapon.name %>（Lv.1）</th>
-            <% end %>
-            <th><%= @min_point %>p</th>
-          </tr>
-        </table>
-      </div>
     <% end %>
   <% end %>
 </div>

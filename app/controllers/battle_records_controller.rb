@@ -4,7 +4,7 @@ class BattleRecordsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   
   def index
-    @battle_records = BattleRecord.where(user_id: session[:user_id]).order(id: :asc).page(params[:page]).per(50)
+    @battle_records = BattleRecord.where(user_id: session[:user_id]).order(id: :desc).page(params[:page]).per(50)
   end
   
   def new

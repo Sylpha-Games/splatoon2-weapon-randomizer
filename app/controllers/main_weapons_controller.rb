@@ -11,6 +11,7 @@ class MainWeaponsController < ApplicationController
       @gear_set = GearSet.find_by(user_id: session[:user_id], main_weapon_id: params[:id])
       if BattleRecord.find_by(user_id: session[:user_id], main_weapon_id: params[:id])
         @level = Math.sqrt((BattleRecord.where(user_id: session[:user_id], main_weapon_id: params[:id]).sum(:point)) / 100).floor
+        @average_point = BattleRecord.where(user_id: session[:user_id], main_weapon_id: params[:id]).average(:point).floor
       else
         @level = 1
       end

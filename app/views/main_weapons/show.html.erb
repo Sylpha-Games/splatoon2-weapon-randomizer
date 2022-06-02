@@ -9,6 +9,9 @@
   <h1 class="h5 font-weight-bold"><%= @main_weapon.name %></h1>
   <% if login? %>
     <p class="font-weight-bold h4 mb-3">Lv.<%= @level %></p>
+    <% if @average_point %>
+      <p class="font-weight-bold h4 mb-3">平均：<%= @average_point %>p</p>
+    <% end %>
   <% end %>
   <% if @gear_set %>
     <p>

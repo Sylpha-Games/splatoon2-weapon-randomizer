@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'toppages#index'
+  get 'achievement', to: 'toppages#achievement'
   
   get 'signup', to: 'users#new'
   resources :users, only: [:create, :show, :edit, :update, :destroy]

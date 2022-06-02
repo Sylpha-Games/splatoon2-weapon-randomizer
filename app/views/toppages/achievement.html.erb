@@ -1,0 +1,37 @@
+<div class="text-center mb-5">
+  <h1>実績一覧</h1>
+  <% if BattleRecord.find_by(user_id: session[:user_id]) %>
+    <p class="font-weight-bold h5 mt-5">これまでの合計塗りポイント</p>
+    <p class="font-weight-bold h1 mt-3"><%= @total_point %>p</p>
+    <p class="font-weight-bold h5 mt-5">達成率</p>
+    <p class="font-weight-bold h1 mt-3"><%= @achievement_rate %>%</p>
+    <p class="font-weight-bold h3 mt-3">（<%= @data_count %> / <%= @all_data_count %>）</p>
+    <p class="font-weight-bold h5 mt-5">合計塗りポイントが最も多いブキ</p>
+    <p class="mt-3">
+      <img class="rounded" src=<%= "/main_weapons/#{@max_weapon_record_weapon.image}" %> alt="Main Weapon" width="160px" height="160px">
+    </p>
+    <p>
+      <img class="rounded" src=<%= "/sub_weapons/#{@max_weapon_record_weapon.sub_weapon.image}" %> alt="Sub Weapon" width="80px" height="80px">
+      <img class="rounded" src=<%= "/special_weapons/#{@max_weapon_record_weapon.special_weapon.image}" %> alt="Special Weapon" width="80px" height="80px">
+    </p>
+    <p class="font-weight-bold h5"><%= @max_weapon_record_weapon.name %></p>
+    <p class="font-weight-bold h4"><%= @max_weapon_record_point %>p</p>
+    <p class="font-weight-bold h5 mt-5">合計塗りポイントが最も多いステージ</p>
+    <p class="mt-3">
+      <img class="rounded" src=<%= "/stages/#{@max_stage_record_stage.image}" %> alt="Stage" width="320px" height="180px">
+    </p>
+    <p class="font-weight-bold h5"><%= @max_stage_record_stage.name %></p>
+    <p class="font-weight-bold h4"><%= @max_stage_record_point %>p</p>
+    <p class="font-weight-bold h5 mt-5">塗りポイントが最も多い記録</p>
+    <p class="font-weight-bold h5 mt-3"><%= @max_point_record.created_at.to_s(:datetime_jp) %></p>
+    <div class="row">
+      <table class="table table-bordered offset-xl-2 col-xl-8 offset-lg-1 col-lg-10">
+        <tr>
+          <th><img class="rounded" src=<%= "/main_weapons/#{@max_point_record.main_weapon.image}" %> alt="Main Weapon" width="90px" height="90px"></th>
+          <th><img class="rounded" src=<%= "/stages/#{@max_point_record.stage.image}" %> alt="Main Weapon" width="160px" height="90px"></th>
+          <th class="align-middle"><%= @max_point_record.point %>p</th>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+</div>
