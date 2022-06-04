@@ -8,6 +8,9 @@
   </p>
   <p><%= link_to @main_weapon.name, main_weapon_path(@main_weapon), class: 'font-weight-bold h5' %></p>
   <p class="font-weight-bold h4 mb-3">Lv.<%= @level %></p>
+  <% if @average_point %>
+    <p class="font-weight-bold h4 mb-3">平均：<%= @average_point %>p</p>
+  <% end %>
   <% if @gear_set %>
     <p>
       <img class="rounded" src=<%= "/gear_powers/#{@gear_set.headgear.main_gear_power.image}" %> alt="Main Gear Power" width="80px" height="80px">

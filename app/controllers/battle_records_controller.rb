@@ -14,6 +14,7 @@ class BattleRecordsController < ApplicationController
     @stages = Stage.order(id: :asc)
     if BattleRecord.find_by(user_id: session[:user_id], main_weapon_id: params[:main_weapon_id])
       @level = Math.sqrt((BattleRecord.where(user_id: session[:user_id], main_weapon_id: params[:main_weapon_id]).sum(:point)) / 100).floor
+      @average_point = BattleRecord.where(user_id: session[:user_id], main_weapon_id: params[:main_weapon_id]).average(:point).floor
     else
       @level = 1
     end

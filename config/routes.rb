@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root to: 'toppages#index'
   get 'achievement', to: 'toppages#achievement'
+  get 'total_ranking', to: 'toppages#total_ranking'
+  get 'average_ranking', to:'toppages#average_ranking'
   
   get 'signup', to: 'users#new'
   resources :users, only: [:create, :show, :edit, :update, :destroy]

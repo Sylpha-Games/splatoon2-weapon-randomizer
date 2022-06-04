@@ -1,6 +1,6 @@
 class ToppagesController < ApplicationController
   
-  before_action :require_user_login, only: [:achievement]
+  before_action :require_user_login, only: [:achievement, :total_ranking, :average_ranking]
   
   def index
     if session[:main_weapon_id]
@@ -49,6 +49,14 @@ class ToppagesController < ApplicationController
       end
       @max_point_record = BattleRecord.where(user_id: session[:user_id]).order(point: :desc).first
     end
+  end
+  
+  def total_ranking
+    @main_weapon_id_order_by_total = BattleRecord.where(user_id: session[:user_id]).group(:main_weapon_id).order('sum(point) desc').pluck(:main_weapon_id)
+  end
+  
+  def average_ranking
+    @main_weapon_id_order_by_average = BattleRecord.where(user_id: session[:user_id]).group(:main_weapon_id).order('avg(point) desc').pluck(:main_weapon_id)
   end
   
 end
