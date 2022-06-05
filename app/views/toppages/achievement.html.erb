@@ -2,6 +2,7 @@
   <h1>実績一覧</h1>
   <% if BattleRecord.find_by(user_id: session[:user_id]) %>
     <p class="mt-5"><%= link_to '合計塗りポイントランキング', '/total_ranking', class: 'btn btn-lg btn-primary' %></p>
+    <p class="mt-5"><%= link_to '最高塗りポイントランキング', '/max_ranking', class: 'btn btn-lg btn-primary' %></p>
     <p class="mt-5"><%= link_to '平均塗りポイントランキング', '/average_ranking', class: 'btn btn-lg btn-primary' %></p>
     <p class="font-weight-bold h5 mt-5">これまでの合計塗りポイント</p>
     <p class="font-weight-bold h1 mt-3"><%= @total_point %>p</p>

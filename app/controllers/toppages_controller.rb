@@ -55,6 +55,10 @@ class ToppagesController < ApplicationController
     @main_weapon_id_order_by_total = BattleRecord.where(user_id: session[:user_id]).group(:main_weapon_id).order('sum(point) desc').pluck(:main_weapon_id)
   end
   
+  def max_ranking
+    @main_weapon_id_order_by_max = BattleRecord.where(user_id: session[:user_id]).group(:main_weapon_id).order('max(point) desc').pluck(:main_weapon_id)
+  end
+  
   def average_ranking
     @main_weapon_id_order_by_average = BattleRecord.where(user_id: session[:user_id]).group(:main_weapon_id).order('avg(point) desc').pluck(:main_weapon_id)
   end
