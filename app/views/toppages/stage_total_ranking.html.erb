@@ -1,0 +1,22 @@
+<div class="text-center mb-5">
+  <h1>ステージ</h1>
+  <h1 class="h2 mt-5">合計塗りポイントランキング</h1>
+  <p class="mt-5"><%= link_to '合計塗りポイントランキング', '/stage_total_ranking', class: 'btn btn-lg btn-primary' %></p>
+  <p class="mt-5"><%= link_to '最高塗りポイントランキング', '/stage_max_ranking', class: 'btn btn-lg btn-primary' %></p>
+  <p class="mt-5"><%= link_to '平均塗りポイントランキング', '/stage_average_ranking', class: 'btn btn-lg btn-primary' %></p>
+  <% if BattleRecord.find_by(user_id: session[:user_id]) %>
+    <div class="row mt-5">
+      <table class="table table-bordered offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 offset-md-1 col-md-10">
+        <% @ranking = 1 %>
+        <% @stage_id_order_by_total.each do |stage_id| %>
+          <tr>
+            <th class="align-middle" width="15%"><%= @ranking %></th>
+            <th width="65%"><img class="rounded" src=<%= "/stages/#{Stage.find_by(id: stage_id).image}" %> alt="Stage" width="180px" height="90px"></th>
+            <th class="align-middle" width="20%"><%= BattleRecord.where(user_id: session[:user_id], stage_id: stage_id).sum(:point).floor %>p</th>
+          </tr>
+          <% @ranking += 1 %>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+</div>

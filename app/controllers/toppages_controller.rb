@@ -5,6 +5,7 @@ class ToppagesController < ApplicationController
   def index
     if session[:main_weapon_id]
       @main_weapon = MainWeapon.find_by(id: session[:main_weapon_id])
+      @stages_count = Stage.count
       if session[:user_id]
         @gear_set = GearSet.find_by(user_id: session[:user_id], main_weapon_id: session[:main_weapon_id])
         if BattleRecord.find_by(user_id: session[:user_id], main_weapon_id: session[:main_weapon_id])
@@ -51,16 +52,28 @@ class ToppagesController < ApplicationController
     end
   end
   
-  def total_ranking
+  def main_weapon_total_ranking
     @main_weapon_id_order_by_total = BattleRecord.where(user_id: session[:user_id]).group(:main_weapon_id).order('sum(point) desc').pluck(:main_weapon_id)
   end
   
-  def max_ranking
+  def main_weapon_max_ranking
     @main_weapon_id_order_by_max = BattleRecord.where(user_id: session[:user_id]).group(:main_weapon_id).order('max(point) desc').pluck(:main_weapon_id)
   end
   
-  def average_ranking
+  def main_weapon_average_ranking
     @main_weapon_id_order_by_average = BattleRecord.where(user_id: session[:user_id]).group(:main_weapon_id).order('avg(point) desc').pluck(:main_weapon_id)
+  end
+  
+  def stage_total_ranking
+    @stage_id_order_by_total = BattleRecord.where(user_id: session[:user_id]).group(:stage_id).order('sum(point) desc').pluck(:stage_id)
+  end
+  
+  def stage_max_ranking
+    @stage_id_order_by_max = BattleRecord.where(user_id: session[:user_id]).group(:stage_id).order('max(point) desc').pluck(:stage_id)
+  end
+  
+  def stage_average_ranking
+    @stage_id_order_by_average = BattleRecord.where(user_id: session[:user_id]).group(:stage_id).order('avg(point) desc').pluck(:stage_id)
   end
   
 end

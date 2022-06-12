@@ -1,9 +1,14 @@
 <div class="text-center mb-5">
   <h1>実績一覧</h1>
   <% if BattleRecord.find_by(user_id: session[:user_id]) %>
-    <p class="mt-5"><%= link_to '合計塗りポイントランキング', '/total_ranking', class: 'btn btn-lg btn-primary' %></p>
-    <p class="mt-5"><%= link_to '最高塗りポイントランキング', '/max_ranking', class: 'btn btn-lg btn-primary' %></p>
-    <p class="mt-5"><%= link_to '平均塗りポイントランキング', '/average_ranking', class: 'btn btn-lg btn-primary' %></p>
+    <p class="h2 mt-5">メインウェポン</p>
+    <p class="mt-5"><%= link_to '合計塗りポイントランキング', '/main_weapon_total_ranking', class: 'btn btn-lg btn-primary' %></p>
+    <p class="mt-5"><%= link_to '最高塗りポイントランキング', '/main_weapon_max_ranking', class: 'btn btn-lg btn-primary' %></p>
+    <p class="mt-5"><%= link_to '平均塗りポイントランキング', '/main_weapon_average_ranking', class: 'btn btn-lg btn-primary' %></p>
+    <p class="h2 mt-5">ステージ</p>
+    <p class="mt-5"><%= link_to '合計塗りポイントランキング', '/stage_total_ranking', class: 'btn btn-lg btn-primary' %></p>
+    <p class="mt-5"><%= link_to '最高塗りポイントランキング', '/stage_max_ranking', class: 'btn btn-lg btn-primary' %></p>
+    <p class="mt-5"><%= link_to '平均塗りポイントランキング', '/stage_average_ranking', class: 'btn btn-lg btn-primary' %></p>
     <p class="font-weight-bold h5 mt-5">これまでの合計塗りポイント</p>
     <p class="font-weight-bold h1 mt-3"><%= @total_point %>p</p>
     <p class="font-weight-bold h5 mt-5">達成率</p>

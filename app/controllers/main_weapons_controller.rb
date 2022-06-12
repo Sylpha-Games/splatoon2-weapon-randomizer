@@ -25,4 +25,9 @@ class MainWeaponsController < ApplicationController
     redirect_to root_url
   end
   
+  def random_destroy
+    session[:main_weapon_id] = nil
+    redirect_to root_url
+  end
+  
 end

@@ -12,7 +12,8 @@
     <% @main_weapon = MainWeapon.find(1) %>
   <% end %>
   <% if @max_point != 0 %>
-    <p class="font-weight-bold"><span class="fa fa-crown mr-2"></span><%= @main_weapon.name %>（<%= @max_point %>p）</p>
+    <p class="font-weight-bold"><span class="fa fa-crown mr-2"></span><%= @main_weapon.name %><br>（<%= @max_point %>p）</p>
+    <p class="font-weight-bold h5 mb-3">平均：<%= BattleRecord.where(user_id: session[:user_id], stage_id: @stage.id).average(:point).floor %>p</p>
   <% end %>
   <div class="row mt-5">
     <table class="offset-lg-3 col-lg-6 table table-bordered">

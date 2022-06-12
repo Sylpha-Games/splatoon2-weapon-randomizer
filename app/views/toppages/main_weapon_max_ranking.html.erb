@@ -1,5 +1,6 @@
 <div class="text-center mb-5">
-  <h1 class="h2">合計塗りポイントランキング</h1>
+  <h1>メインウェポン</h1>
+  <h1 class="h2 mt-5">最高塗りポイントランキング</h1>
   <p class="mt-5"><%= link_to '合計塗りポイントランキング', '/total_ranking', class: 'btn btn-lg btn-primary' %></p>
   <p class="mt-5"><%= link_to '最高塗りポイントランキング', '/max_ranking', class: 'btn btn-lg btn-primary' %></p>
   <p class="mt-5"><%= link_to '平均塗りポイントランキング', '/average_ranking', class: 'btn btn-lg btn-primary' %></p>
@@ -7,12 +8,12 @@
     <div class="row mt-5">
       <table class="table table-bordered offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 offset-md-1 col-md-10">
         <% @ranking = 1 %>
-        <% @main_weapon_id_order_by_total.each do |main_weapon_id| %>
+        <% @main_weapon_id_order_by_max.each do |main_weapon_id| %>
           <tr>
             <th class="align-middle" width="15%"><%= @ranking %></th>
             <th width="45%"><img class="rounded" src=<%= "/main_weapons/#{MainWeapon.find_by(id: main_weapon_id).image}" %> alt="Main Weapon" width="90px" height="90px"></th>
             <th class="align-middle" width="20%">Lv.<%= Math.sqrt((BattleRecord.where(user_id: session[:user_id], main_weapon_id: main_weapon_id).sum(:point)) / 100).floor %></th>
-            <th class="align-middle" width="20%"><%= BattleRecord.where(user_id: session[:user_id], main_weapon_id: main_weapon_id).sum(:point).floor %>p</th>
+            <th class="align-middle" width="20%"><%= BattleRecord.where(user_id: session[:user_id], main_weapon_id: main_weapon_id).maximum(:point).floor %>p</th>
           </tr>
           <% @ranking += 1 %>
         <% end %>

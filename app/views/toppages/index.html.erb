@@ -41,6 +41,7 @@
   <% if login? %>
     <% if @main_weapon %>
       <p class="mt-5"><%= link_to '塗りポイント登録', "/battle_records/new/#{@main_weapon.id}", class: 'btn btn-lg btn-primary' %></p>
+      <p class="mt-5"><%= link_to 'ランダム生成削除', '/main_weapons/random_destroy', method: :post, data: {confirm: "削除しますか？"}, class: 'btn btn-lg btn-danger' %></p>
     <% end %>
   <% end %>
 </div>
