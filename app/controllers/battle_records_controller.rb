@@ -18,6 +18,9 @@ class BattleRecordsController < ApplicationController
     else
       @level = 1
     end
+    if BattleRecord.find_by(user_id: session[:user_id])
+      @battle_records = BattleRecord.where(user_id: session[:user_id]).order(id: :desc).limit(2)
+    end
   end
   
   def create

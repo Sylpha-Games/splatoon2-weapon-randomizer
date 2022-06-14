@@ -16,6 +16,11 @@ class ToppagesController < ApplicationController
         end
       end
     end
+    if session[:user_id]
+      if BattleRecord.find_by(user_id: session[:user_id])
+        @battle_records = BattleRecord.where(user_id: session[:user_id]).order(id: :desc).limit(2)
+      end
+    end
   end
   
   def achievement
