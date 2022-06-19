@@ -235,7 +235,7 @@ Gear.create(name: "イカ速1.2", category: 1, user_id: 1, main_gear_power_id: 6
 Gear.create(name: "スぺ増1.0 イカ速0.2", category: 1, user_id: 1, main_gear_power_id: 7, sub_gear_power_1_id: 6, sub_gear_power_2_id: 6, sub_gear_power_3_id: 13)
 Gear.create(name: "スぺ増1.2", category: 1, user_id: 1, main_gear_power_id: 7, sub_gear_power_1_id: 7, sub_gear_power_2_id: 7, sub_gear_power_3_id: 13)
 Gear.create(name: "スぺ性能1.2", category: 1, user_id: 1, main_gear_power_id: 9, sub_gear_power_1_id: 9, sub_gear_power_2_id: 9, sub_gear_power_3_id: 13)
-Gear.create(name: "サブ性能1.0 イカ速0.2", category: 1, user_id: 1, main_gear_power_id: 12, sub_gear_power_1_id: 12, sub_gear_power_2_id: 12, sub_gear_power_3_id: 13)
+Gear.create(name: "サブ性能1.0 イカ速0.2", category: 1, user_id: 1, main_gear_power_id: 12, sub_gear_power_1_id: 6, sub_gear_power_2_id: 6, sub_gear_power_3_id: 13)
 Gear.create(name: "メイン性能1.3", category: 1, user_id: 1, main_gear_power_id: 15, sub_gear_power_1_id: 15, sub_gear_power_2_id: 15, sub_gear_power_3_id: 15)
 
 Gear.create(name: "メイン効率1.2", category: 2, user_id: 1, main_gear_power_id: 2, sub_gear_power_1_id: 2, sub_gear_power_2_id: 2, sub_gear_power_3_id: 11)
