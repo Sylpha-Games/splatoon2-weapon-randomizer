@@ -33,21 +33,21 @@ class BattleRecordsController < ApplicationController
       @previous_max_point = 0
     end
     if BattleRecord.find_by(user_id: session[:user_id], main_weapon_id: params[:main_weapon_id])
-      @previous_level = Math.sqrt((BattleRecord.where(user_id: session[:user_id], main_weapon_id: params[:main_weapon_id]).sum(:point)) / 100).floor
+      @previous_main_weapon_average_point = BattleRecord.where(user_id: session[:user_id], main_weapon_id: params[:main_weapon_id]).average(:point).floor
     else
-      @previous_level = 1
+      @previous_main_weapon_average_point = 0
+    end
+    if BattleRecord.find_by(user_id: session[:user_id], stage_id: @battle_record.stage_id)
+      @previous_stage_average_point = BattleRecord.where(user_id: session[:user_id], stage_id: @battle_record.stage_id).average(:point).floor
+    else
+      @previous_stage_average_point = 0
     end
     if @battle_record.save
-      @current_level = Math.sqrt((BattleRecord.where(user_id: session[:user_id], main_weapon_id: params[:main_weapon_id]).sum(:point)) / 100).floor
-      if @current_level > @previous_level
-        msg = "ブキ：#{@battle_record.main_weapon.name},ステージ：#{@battle_record.stage.name},ポイント：#{@battle_record.point}p（過去最高：#{@previous_max_point}p）,レベル：Lv.#{@previous_level}→Lv.#{@current_level}"
-        msg = msg.gsub(",","<br>")
-        flash[:success] = msg
-      else
-        msg = "ブキ：#{@battle_record.main_weapon.name},ステージ：#{@battle_record.stage.name},ポイント：#{@battle_record.point}p（過去最高：#{@previous_max_point}p）"
-        msg = msg.gsub(",","<br>")
-        flash[:success] = msg
-      end
+      @main_weapon_average_point = BattleRecord.where(user_id: session[:user_id], main_weapon_id: params[:main_weapon_id]).average(:point).floor
+      @stage_average_point = BattleRecord.where(user_id: session[:user_id], stage_id: @battle_record.stage_id).average(:point).floor
+      msg = "ブキ：#{@battle_record.main_weapon.name},（平均：#{@previous_main_weapon_average_point}p → #{@main_weapon_average_point}p）,ステージ：#{@battle_record.stage.name},（平均：#{@previous_stage_average_point}p → #{@stage_average_point}p）,ポイント：#{@battle_record.point}p（過去最高：#{@previous_max_point}p）"
+      msg = msg.gsub(",","<br>")
+      flash[:success] = msg
     else
       flash[:danger] = '登録に失敗しました。'
     end

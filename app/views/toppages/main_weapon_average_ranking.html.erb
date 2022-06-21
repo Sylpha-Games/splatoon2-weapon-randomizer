@@ -1,9 +1,9 @@
 <div class="text-center mb-5">
   <h1>メインウェポン</h1>
   <h1 class="h2 mt-5">平均塗りポイントランキング</h1>
-  <p class="mt-5"><%= link_to '合計塗りポイントランキング', '/total_ranking', class: 'btn btn-lg btn-primary' %></p>
-  <p class="mt-5"><%= link_to '最高塗りポイントランキング', '/max_ranking', class: 'btn btn-lg btn-primary' %></p>
-  <p class="mt-5"><%= link_to '平均塗りポイントランキング', '/average_ranking', class: 'btn btn-lg btn-primary' %></p>
+  <p class="mt-5"><%= link_to '合計塗りポイントランキング', '/main_weapon_total_ranking', class: 'btn btn-lg btn-primary' %></p>
+  <p class="mt-5"><%= link_to '最高塗りポイントランキング', '/main_weapon_max_ranking', class: 'btn btn-lg btn-primary' %></p>
+  <p class="mt-5"><%= link_to '平均塗りポイントランキング', '/main_weapon_average_ranking', class: 'btn btn-lg btn-primary' %></p>
   <% if BattleRecord.find_by(user_id: session[:user_id]) %>
     <div class="row mt-5">
       <table class="table table-bordered offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 offset-md-1 col-md-10">
